@@ -1,0 +1,30 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>赤ちゃんがよく泣く。泣いた時だけ抱く？ 機嫌がいい時にも抱く？</title><link rel="stylesheet" href="style.css"></head><body><main><header><div class="brand">育児エビデンス・ストーリー</div><div class="badge">第9回・抱っこ</div></header><article>
+<div class="kicker">あなたなら、どうしますか？</div>
+<h1>赤ちゃんがよく泣く。<br>泣いた時だけ抱く？<br>それとも、機嫌がいい時にも抱く？</h1>
+<p class="lead">泣いたら抱く。これは自然です。では、泣いていない時まで抱っこを増やす意味はあるのでしょうか。</p>
+<div class="question"><div class="qtitle">泣く時間を減らしたいなら、どちら？</div><div class="choices">
+<button class="choice" onclick="pick(this)"><strong>A　泣いた時を中心に抱く</strong><span>困っていない時まで抱く必要はなさそう。</span></button>
+<button class="choice" onclick="pick(this)"><strong>B　機嫌がいい時にも抱く</strong><span>泣く前の時間にも、日中の抱っこを少し増やす。</span></button>
+</div><div class="chosen" id="chosen">予想を決めたら、研究結果を見てみましょう。</div></div>
+<div class="reveal"><h3>機嫌がいい時にも抱っこを増やした群では、泣き・ぐずりが少なくなりました。</h3><p>違いが出たのは「泣いてからどう抱くか」ではなく、「一日の中でどれくらい抱くか」でした。</p><div class="cover" id="cover"><div>結果を開く<br><button class="openbtn" onclick="reveal()">研究結果を見る</button></div></div></div>
+<h2>99組の親子を比べた</h2>
+<p>1986年の試験では、健康な赤ちゃん99組を、普段より抱っこを増やす群と、いつも通りの群に分けました。</p>
+<p>抱っこを増やす群では、授乳中や泣いた時だけでなく、<strong>泣いていない時間にも日中の抱っこを追加</strong>しました。</p>
+<div class="figure"><div class="figtitle">生後6週ごろの1日の泣き・ぐずり</div>
+<div class="row"><div class="label">抱っこを増やす</div><div class="track"><div class="bar" style="width:57%"></div></div><div class="value">1.23時間</div></div>
+<div class="row"><div class="label">いつも通り</div><div class="track"><div class="bar gray" style="width:100%"></div></div><div class="value">2.16時間</div></div>
+<div class="caption">Hunziker & Barr（1986）。99組のランダム化比較試験。</div></div>
+<div class="highlight"><strong>平均すると、泣き・ぐずりは43％少なかった。</strong>夕方4時〜深夜0時では51％少なくなっていました。</div>
+<div class="pull">泣いてから抱くことだけが、抱っこの役割ではない。</div>
+<h2>睡眠時間が増えたわけではない</h2>
+<p>ここは大事です。抱っこを増やした群では泣き・ぐずりは減りましたが、<strong>睡眠時間が増えたわけではありませんでした。</strong></p>
+<p>つまり、「たくさん抱けばよく眠る」という研究ではなく、日中の接触を増やすことで、通常の泣き方そのものが変わる可能性を見た研究です。</p>
+<h2>家庭なら、どう使う？</h2>
+<div class="practice">
+<div class="pitem"><b>① 泣く前にも短い抱っこを足す</b><span>機嫌よく起きている時に、座って話しかけながら抱く、家の中を一緒に回るなどで十分です。</span></div>
+<div class="pitem"><b>② 一人で全部増やさない</b><span>もう一人の保護者も担当し、負担を一人へ集中させません。</span></div>
+<div class="pitem"><b>③ 研究の抱っこ量を完全再現しない</b><span>家庭で無理なく続けられる範囲で考えます。</span></div>
+</div>
+<div class="end">赤ちゃんが泣いた時だけ「どう止めるか」を考えていたなら。<br><br><strong>泣いていない時間の過ごし方にも、意味があるかもしれません。</strong></div>
+<div class="limit"><b>この研究で言えないこと</b><br><br>すでに激しい長時間の泣きが続いている赤ちゃんに、抱っこを増やせば同じだけ改善するとは限りません。また、抱っこ不足が泣きの原因だと決めつける研究でもありません。</div>
+<div class="refs"><b>参考文献</b><br>Hunziker UA, Barr RG. Increased carrying reduces infant crying: a randomized controlled trial. <i>Pediatrics.</i> 1986;77(5):641-648.<br><a href="https://pubmed.ncbi.nlm.nih.gov/3517799/" target="_blank">PubMed</a></div><div class="nav"><a href="episode08.html">← 第8回</a><a href="episode10.html">第10回 →</a></div><div class="home"><a href="index.html">全記事の一覧へ</a></div></article><div class="footer">公開版｜研究結果を家庭の判断に使いやすく読み解くシリーズ</div></main><script>function pick(el){document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));el.classList.add("selected");document.getElementById("chosen").classList.add("show")}function reveal(){document.getElementById("cover").classList.add("open")}</script></body></html>

@@ -1,0 +1,31 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>毎晩同じ時刻に起きるなら、先に起こす？</title><link rel="stylesheet" href="style.css"></head><body><main><header><div class="brand">育児エビデンス・ストーリー</div><div class="badge">第6回・夜間覚醒</div></header><article>
+<div class="kicker">あなたなら、どうしますか？</div>
+<h1>毎晩、ほぼ同じ時刻に起きて泣く。<br>その時間まで寝かせる？<br>それとも、先に起こす？</h1>
+<p class="lead">夜中の1時ごろ、毎晩のように起きて泣く。「今日はそのまま朝まで寝てくれ」と願うのが普通です。</p>
+<div class="question"><div class="qtitle">規則的な夜間覚醒を減らす方法として、実際に研究されたのは？</div><div class="choices">
+<button class="choice" onclick="pick(this)"><strong>A　起きるまで寝かせる</strong><span>せっかく眠っているのだから、わざわざ起こさない。</span></button>
+<button class="choice" onclick="pick(this)"><strong>B　いつもの覚醒より前に、あえて起こす</strong><span>いつも起きる15〜60分前に起こして慰め、その予定覚醒をあとで減らしていく。</span></button>
+</div><div class="chosen" id="chosen">かなり変なBですが、本当に比較試験があります。</div></div>
+<div class="reveal"><h3>先回りして起こす方法で、夜間の覚醒と泣きが減りました。</h3><p>「寝ている子を起こす」という、かなり逆説的な方法です。</p><div class="cover" id="cover"><div>結果を開く<br><button class="openbtn" onclick="reveal()">研究結果を見る</button></div></div></div>
+<h2>33人を3つのグループへ</h2>
+<p>1988年の試験では、自然に夜中に目覚めて泣く乳幼児33人を無作為に3群へ分けました。</p>
+<div class="storybox">
+<div class="step"><div class="n">1</div><div><b>予定より先に起こす</b><span>いつもの覚醒より15〜60分前に親が起こし、授乳または慰める。自然な覚醒がなくなったら、親が起こす回数も徐々に減らす。</span></div></div>
+<div class="step"><div class="n">2</div><div><b>泣いても原則反応を控える</b><span>身体的な安全確認を除き、夜泣きへの対応を控える。</span></div></div>
+<div class="step"><div class="n">3</div><div><b>いつも通り</b><span>特別な介入をしない。</span></div></div>
+</div>
+<h2>8週間後、どうなった？</h2>
+<p>「先に起こす」群も「反応を控える」群も、対照群より夜中に起きて泣く回数が減りました。その効果は治療後3週、6週の追跡でも確認されました。</p>
+<p>最初の1週間だけは反応を控える方法の方が早く効きましたが、その後は2つの介入の効果はおおむね似ていました。</p>
+<div class="pull">夜中に起きる癖を減らすために、<br>「起きないようにする」のではなく、<br>一度こちらから先に起こす。</div>
+<h2>家庭なら、いきなり試す？</h2>
+<p>いいえ。この方法は、毎晩ほぼ同じ時刻に起きるという<strong>規則性のある問題</strong>を対象にしています。</p>
+<div class="practice">
+<div class="pitem"><b>① まず数晩、自然な覚醒時刻を見る</b><span>毎日バラバラなら、この試験の条件とは違います。</span></div>
+<div class="pitem"><b>② 低月齢の必要な授乳には使わない</b><span>新生児や、夜間授乳が必要な乳児を「癖」として起こさない方法ではありません。</span></div>
+<div class="pitem"><b>③ 試すなら計画して行う</b><span>何分前に起こすか、改善後にどう減らすかまでを含む方法です。</span></div>
+</div>
+<div class="end">「寝ている子は起こさない」。<br>普通はその方が正しそうです。<br><br>でも、<strong>毎晩ほぼ同じ時刻に起きるという特殊な問題では、逆の発想が実際に試されている。</strong><br>そこがこの研究の面白さです。</div>
+<div class="limit"><b>この研究で言えないこと</b><br><br>1988年の33人という小規模で古い試験です。現代の大規模試験で十分に再確認された万能法ではありません。規則性のない夜間覚醒や、必要な夜間授乳へ一般化できません。</div>
+<div class="refs"><b>参考文献</b><br>Rickert VI, Johnson CM. Reducing nocturnal awakening and crying episodes in infants and young children: a comparison between scheduled awakenings and systematic ignoring. <i>Pediatrics.</i> 1988;81(2):203-212.<br><a href="https://pubmed.ncbi.nlm.nih.gov/3340471/" target="_blank">PubMed</a></div>
+<div class="nav"><a href="episode05.html">← 第5回</a><a href="episode07.html">第7回 →</a></div><div class="home"><a href="index.html">全8回の一覧へ</a></div></article><div class="footer">公開版｜研究結果を家庭の判断に使いやすく読み解くシリーズ</div></main><script>function pick(el){document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));el.classList.add("selected");document.getElementById("chosen").classList.add("show")}function reveal(){document.getElementById("cover").classList.add("open")}</script></body></html>

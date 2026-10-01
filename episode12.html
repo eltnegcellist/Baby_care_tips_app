@@ -1,0 +1,26 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>赤ちゃんの手足が冷たい。服を1枚足す？ それとも胸や背中を確かめる？</title><link rel="stylesheet" href="style.css"></head><body><main><header><div class="brand">育児エビデンス・ストーリー</div><div class="badge">第12回・体温調整</div></header><article>
+<div class="kicker">あなたなら、どうしますか？</div>
+<h1>赤ちゃんの手足が冷たい。<br>服を1枚足す？<br>それとも、胸や背中を確かめる？</h1>
+<p class="lead">赤ちゃんの手を触ったらひんやり。寒いのでは、と心配になります。</p>
+<div class="question"><div class="qtitle">まず判断材料にするなら、どちら？</div><div class="choices">
+<button class="choice" onclick="pick(this)"><strong>A　手足の冷たさ</strong><span>冷たいなら寒いと考えて、服や掛け物を足す。</span></button>
+<button class="choice" onclick="pick(this)"><strong>B　胸・背中・汗・室温</strong><span>手足だけで決めず、体の中心が熱くないかも見る。</span></button>
+</div><div class="chosen" id="chosen">今回は一つの実験の勝ち負けではなく、安全な体温調整の考え方です。</div></div>
+<div class="reveal"><h3>手足が冷たいだけでは、「赤ちゃんが寒い」とは判断できません。</h3><p>健康な新生児では、手足が青っぽく見えたり冷たく感じたりすることがあります。</p><div class="cover" id="cover"><div>答えを見る<br><button class="openbtn" onclick="reveal()">研究と指針を見る</button></div></div></div>
+<h2>見る場所を変える</h2>
+<p>赤ちゃんは、手足と体の中心が同じ温度にはなりません。末端が冷たいという一つのサインだけで、厚着が必要だとは決められません。</p>
+<p>一方で、安全な睡眠の指針では<strong>暑くしすぎることも避ける</strong>よう勧められています。汗ばんでいる、胸や背中が熱い、頭まで厚く覆っている、といった状態は見直す必要があります。</p>
+<div class="figure"><div class="figtitle">まず確かめたいこと</div><div class="statgrid">
+<div class="stat"><b>手足</b><span>冷たいことはある。これだけで寒さを決めない。</span></div>
+<div class="stat"><b>胸・背中</b><span>熱さや汗がないかを見る。室温や寝衣も一緒に考える。</span></div>
+</div></div>
+<div class="pull">冷たい手を温めることと、<br>赤ちゃん全体を厚着させることは同じではない。</div>
+<h2>家庭なら、どう判断する？</h2>
+<div class="practice">
+<div class="pitem"><b>① 胸や背中に触れる</b><span>熱がこもっていないか、汗ばんでいないかを確認します。</span></div>
+<div class="pitem"><b>② 一度に何枚も増やさない</b><span>本当に寒そうなら寝衣や室温を一つずつ調整します。</span></div>
+<div class="pitem"><b>③ 掛け布団で調整しない</b><span>乳児の睡眠では、顔にかかる柔らかい寝具を増やさず、適切な寝衣で調整します。</span></div>
+</div>
+<div class="end">手を触って冷たかった時、<br>反射的にもう1枚着せる前に。<br><br><strong>胸や背中はどうだろう。</strong><br>判断する場所を一つ変えるだけで、見え方が変わります。</div>
+<div class="limit"><b>この話の範囲</b><br><br>「手足が冷たくても絶対に問題ない」という意味ではありません。体の中心も冷たい、顔色や反応がいつもと違う、具合が悪そうなどの場合は、室温だけの問題と考えず体調を確認してください。</div>
+<div class="refs"><b>参考</b><br>American Academy of Pediatrics / HealthyChildren.org. Cool hands and feet can be normal in healthy newborns; safe-sleep guidance recommends avoiding overheating.<br><a href="https://www.healthychildren.org/English/tips-tools/ask-the-pediatrician/Pages/How-long-is-it-appropriate-to-keep-hand-mittens-on-newborn-baby.aspx" target="_blank">HealthyChildren.org</a></div><div class="nav"><a href="episode11.html">← 第11回</a><a href="episode13.html">第13回 →</a></div><div class="home"><a href="index.html">全記事の一覧へ</a></div></article><div class="footer">公開版｜研究結果を家庭の判断に使いやすく読み解くシリーズ</div></main><script>function pick(el){document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));el.classList.add("selected");document.getElementById("chosen").classList.add("show")}function reveal(){document.getElementById("cover").classList.add("open")}</script></body></html>

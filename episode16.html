@@ -1,0 +1,23 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>赤ちゃんをあやす時、縦に揺らす？ 横に揺らす？</title><link rel="stylesheet" href="style.css"></head><body><main><header><div class="brand">育児エビデンス・ストーリー</div><div class="badge">第16回・揺らし方</div></header><article>
+<div class="kicker">どちらだと思いますか？</div>
+<h1>赤ちゃんをあやす時、<br>縦に揺らす？<br>それとも、横に揺らす？</h1>
+<p class="lead">「縦揺れの方が眠くなる」「横揺れは遊びになってしまう」。そんな説明を聞くことがあります。</p>
+<div class="question"><div class="qtitle">研究では、どちらが優れていた？</div><div class="choices">
+<button class="choice" onclick="pick(this)"><strong>A　縦揺れ</strong><span>上下方向の刺激の方が落ち着きそう。</span></button>
+<button class="choice" onclick="pick(this)"><strong>B　横揺れ</strong><span>ゆりかごのような左右の動きの方が自然そう。</span></button>
+</div><div class="chosen" id="chosen">今回は、意外な“勝者”が出る回ではありません。</div></div>
+<div class="reveal"><h3>研究では、縦と横のどちらが優れているか決着していません。</h3><p>方向だけを取り出して「こちらが正解」と言えるほど、証拠はそろっていません。</p><div class="cover" id="cover"><div>結果を開く<br><button class="openbtn" onclick="reveal()">研究結果を見る</button></div></div></div>
+<h2>古い研究では結果が一致しなかった</h2>
+<p>機械式の揺りかごを使った古い小規模研究では、方向による違いが出た実験もあれば、違いが確認されなかった実験もあります。</p>
+<p>しかも、装置の音など別の条件がそろっていない研究もありました。</p>
+<div class="figure"><div class="figtitle">研究から言えること</div><div class="bigstat">優劣は未決着</div><p>「縦揺れなら眠る」「横揺れは遊びになる」といった一律のルールは、確立した知識ではありません。</p></div>
+<div class="pull">向きの名前より、<br>揺れの大きさ・速さ・赤ちゃんの反応を見る。</div>
+<h2>家庭なら、どう使う？</h2>
+<div class="practice">
+<div class="pitem"><b>① 今の揺れで落ち着いているなら矯正しない</b><span>縦に変えなければ、と考える必要はありません。</span></div>
+<div class="pitem"><b>② 泣きが強まったら、強くしない</b><span>一度止めるか、小さく穏やかな動きへ変えます。</span></div>
+<div class="pitem"><b>③ 頭が前後に大きく振られる動きは避ける</b><span>方向の好みとは別に、安全な支え方が優先です。</span></div>
+</div>
+<div class="end">育児では、「正しい角度」「正しい回数」が欲しくなります。<br><br>でも研究の答えが、<strong>「そこまでは分からない」</strong>で終わることもあります。<br>それも大事な答えです。</div>
+<div class="limit"><b>この研究で言えないこと</b><br><br>「どちらでも完全に同じ」と証明されたわけではありません。研究条件が古く小規模で、家庭の抱っこそのものを直接比べた十分な試験ではありません。</div>
+<div class="refs"><b>参考</b><br>Vrugt DT, Pederson DR. The effects of vertical rocking frequencies on the arousal level in two-month-old infants. <i>Child Dev.</i> 1973;44(1):205-209.<br><a href="https://pubmed.ncbi.nlm.nih.gov/4706068/" target="_blank">PubMed</a></div><div class="nav"><a href="episode15.html">← 第15回</a><a href="episode17.html">第17回 →</a></div><div class="home"><a href="index.html">全記事の一覧へ</a></div></article><div class="footer">公開版｜研究結果を家庭の判断に使いやすく読み解くシリーズ</div></main><script>function pick(el){document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));el.classList.add("selected");document.getElementById("chosen").classList.add("show")}function reveal(){document.getElementById("cover").classList.add("open")}</script></body></html>

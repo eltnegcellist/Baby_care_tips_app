@@ -170,15 +170,13 @@ h2{font-size:clamp(30px,5.4vw,52px);line-height:1.22;letter-spacing:-.04em}
     <div class="spacer"></div><div class="count" id="count">1 / 6</div>
   </div>
 
-  <audio id="audio" preload="auto"></audio>
-
   <div class="start" id="start">
     <div class="startInner">
       <div class="kicker">60 SECOND INTERACTIVE STORY</div>
       <div class="startTitle">寝ないなら、<br>もっと早く？<br><span class="accent">それとも遅く？</span></div>
       <div class="startText">結論と研究結果だけを、約60秒で。<br>途中で二択に参加できます。</div>
       <button class="startBtn" id="startBtn">▶ 始める</button>
-      <div class="audioStatus" id="audioStatus">高品質ナレーションを確認中…</div>
+      <div class="audioStatus" id="audioStatus">端末の日本語TTSを使用します</div>
     </div>
   </div>
 </div>
@@ -193,35 +191,41 @@ const nextBtn=document.getElementById('nextBtn');
 const soundBtn=document.getElementById('soundBtn');
 const captionBtn=document.getElementById('captionBtn');
 const count=document.getElementById('count');
-const audio=document.getElementById('audio');
 const start=document.getElementById('start');
 const startBtn=document.getElementById('startBtn');
-const audioStatus=document.getElementById('audioStatus');
 const babyDots=document.getElementById('babyDots');
 
 for(let i=0;i<43;i++){const s=document.createElement('span');s.style.animationDelay=(i*18)+'ms';babyDots.appendChild(s)}
 
-let index=0,playing=false,soundOn=true,captionsOn=true,awaitingChoice=false,timer=null,audioAvailable=false,audioExt="",started=false;
+let index=0,playing=false,soundOn=true,captionsOn=true,awaitingChoice=false,timer=null,started=false,voice=null;
 
-async function detectAudio(){
-  audioAvailable=false;
-  audioExt="";
-  for(const ext of [".mp3",".wav"]){
-    try{
-      const r=await fetch("audio/ep01-01"+ext,{method:"HEAD",cache:"no-store"});
-      if(r.ok){audioAvailable=true;audioExt=ext;break}
-    }catch(e){}
+function pickJapaneseVoice(){
+  if(!("speechSynthesis" in window)){
+    soundOn=false;
+    soundBtn.disabled=true;
+    soundBtn.textContent="🔇";
+    return;
   }
-  audioStatus.textContent=audioAvailable
-    ? "AivisSpeech ナレーション対応 ("+audioExt.slice(1).toUpperCase()+")"
-    : "映像版は利用可能｜AivisSpeech音声は未生成";
-  soundBtn.disabled=!audioAvailable;
-  if(!audioAvailable)soundBtn.textContent='🔇';
+  const voices=speechSynthesis.getVoices();
+  voice=
+    voices.find(v=>v.lang==="ja-JP" && /Google 日本語|Microsoft.*(Nanami|Haruka|Ayumi)|Kyoko|O-ren|Japanese/i.test(v.name)) ||
+    voices.find(v=>v.lang==="ja-JP") ||
+    voices.find(v=>v.lang && v.lang.startsWith("ja")) ||
+    null;
 }
-detectAudio();
+if("speechSynthesis" in window){
+  pickJapaneseVoice();
+  speechSynthesis.onvoiceschanged=pickJapaneseVoice;
+}else{
+  soundOn=false;
+  soundBtn.disabled=true;
+  soundBtn.textContent="🔇";
+}
 
 function clearTimer(){if(timer){clearTimeout(timer);timer=null}}
-function stopAudio(){audio.pause();audio.currentTime=0}
+function stopSpeech(){
+  if("speechSynthesis" in window) speechSynthesis.cancel();
+}
 function render(){
   scenes.forEach((s,i)=>s.classList.toggle('active',i===index));
   progress.style.width=((index+1)/scenes.length*100)+'%';
@@ -238,18 +242,28 @@ function scheduleFallback(){
   const ms=Number(scenes[index].dataset.duration||7000);
   timer=setTimeout(()=>next(true),ms);
 }
-async function playScene(){
-  clearTimer();stopAudio();
+function playScene(){
+  clearTimer();
+  stopSpeech();
   if(!playing||awaitingChoice)return;
-  if(audioAvailable&&soundOn&&scenes[index].dataset.audio){
-    audio.src=scenes[index].dataset.audio.replace(/\.(mp3|wav)$/,"")+audioExt;
-    audio.onended=()=>{if(playing)next(true)};
-    audio.onerror=()=>scheduleFallback();
-    try{await audio.play()}catch(e){scheduleFallback()}
-  }else scheduleFallback();
+
+  const text=scenes[index].dataset.caption || "";
+  if(soundOn && "speechSynthesis" in window && text){
+    const utterance=new SpeechSynthesisUtterance(text);
+    utterance.lang="ja-JP";
+    utterance.rate=1.06;
+    utterance.pitch=1.02;
+    if(voice) utterance.voice=voice;
+    utterance.onend=()=>{ if(playing) next(true); };
+    utterance.onerror=()=>scheduleFallback();
+    speechSynthesis.speak(utterance);
+  }else{
+    scheduleFallback();
+  }
 }
 function show(i,auto=true){
-  clearTimer();stopAudio();
+  clearTimer();
+  stopSpeech();
   index=Math.max(0,Math.min(scenes.length-1,i));render();
   if(auto&&started)playScene();
 }
@@ -263,7 +277,7 @@ function togglePlay(){
   if(index===scenes.length-1&&!playing){scenes.forEach(s=>delete s.dataset.answered);index=0;render()}
   playing=!playing;
   playBtn.innerHTML=playing?'⏸ <span class="txt">一時停止</span>':'▶ <span class="txt">再生</span>';
-  if(playing)playScene();else{clearTimer();audio.pause()}
+  if(playing)playScene();else{clearTimer();stopSpeech()}
 }
 document.querySelectorAll('.choice').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));
@@ -275,10 +289,15 @@ document.querySelectorAll('.choice').forEach(btn=>btn.addEventListener('click',(
 playBtn.addEventListener('click',togglePlay);
 prevBtn.addEventListener('click',prev);
 nextBtn.addEventListener('click',()=>{playing=false;playBtn.innerHTML='▶ <span class="txt">再生</span>';show(index+1,false)});
-soundBtn.addEventListener('click',()=>{soundOn=!soundOn;soundBtn.innerHTML=soundOn?'🔊 <span class="txt">音声</span>':'🔇 <span class="txt">音声</span>';if(!soundOn)audio.pause();else if(playing)playScene()});
+soundBtn.addEventListener('click',()=>{
+  soundOn=!soundOn;
+  soundBtn.innerHTML=soundOn?'🔊 <span class="txt">音声</span>':'🔇 <span class="txt">音声</span>';
+  stopSpeech();
+  if(soundOn && playing) playScene();
+});
 captionBtn.addEventListener('click',()=>{captionsOn=!captionsOn;captionBtn.innerHTML=captionsOn?'CC <span class="txt">字幕</span>':'CC̸ <span class="txt">字幕</span>';render()});
 startBtn.addEventListener('click',()=>{started=true;start.classList.add('hidden');playing=true;render();playScene()});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){clearTimer();audio.pause()}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){clearTimer();stopSpeech()}});
 render();
 </script>
 </body>

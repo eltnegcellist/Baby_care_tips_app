@@ -245,7 +245,7 @@ function scheduleFallback(){
 function playScene(){
   clearTimer();
   stopSpeech();
-  if(!playing||awaitingChoice)return;
+  if(!playing)return;
 
   const text=scenes[index].dataset.caption || "";
   if(soundOn && "speechSynthesis" in window && text){
@@ -254,7 +254,7 @@ function playScene(){
     utterance.rate=1.06;
     utterance.pitch=1.02;
     if(voice) utterance.voice=voice;
-    utterance.onend=()=>{ if(playing) next(true); };
+    utterance.onend=()=>{ if(playing && !awaitingChoice) next(true); };
     utterance.onerror=()=>scheduleFallback();
     speechSynthesis.speak(utterance);
   }else{

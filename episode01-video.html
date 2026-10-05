@@ -3,159 +3,179 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>第1回｜60秒でわかる寝つき研究</title>
+<title>第1回｜寝かしつけに1時間。少し遅くする？</title>
 <style>
 :root{
-  --ink:#fffaf4;--muted:#cfc6bd;--orange:#ffb278;--orange2:#e67f48;
-  --green:#a9d2b2;--cream:#fff7ea;--dark:#171513;--panel:#25211e;--line:#4a423c;
+  --paper:#f7f2e8;
+  --paper2:#fffdf8;
+  --ink:#322e29;
+  --muted:#756d64;
+  --line:#ded3c5;
+  --coral:#c97558;
+  --coral-soft:#f1ddd2;
+  --green:#6f8f78;
+  --green-soft:#e3eee5;
+  --yellow:#f5e9b8;
 }
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d0c0b;color:var(--ink);
-font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#e9e1d5;color:var(--ink);
+font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
 body{display:flex;justify-content:center;align-items:center}
-.player{position:relative;width:min(100vw,900px);height:100dvh;max-height:820px;min-height:560px;overflow:hidden;background:#171513}
-.progress-wrap{position:absolute;z-index:50;inset:0 0 auto;height:4px;background:#3b3531}
-.progress{height:100%;width:0;background:linear-gradient(90deg,var(--orange2),var(--orange));transition:width .35s}
-.topbar{position:absolute;z-index:40;left:0;right:0;top:4px;height:58px;padding:12px 18px;display:flex;align-items:center;gap:10px;background:linear-gradient(#171513 35%,transparent)}
-.brand{font-size:14px;font-weight:950}.badge{font-size:11px;color:#d8cec5;border:1px solid #504740;border-radius:999px;padding:6px 9px}
-.back{margin-left:auto;color:#cfc6bd;text-decoration:none;font-size:12px}
+.player{position:relative;width:min(100vw,780px);height:100dvh;max-height:820px;min-height:560px;overflow:hidden;background:var(--paper)}
+.player:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;background-image:radial-gradient(#b9aa98 .55px,transparent .55px);background-size:7px 7px}
+.progress-wrap{position:absolute;z-index:50;inset:0 0 auto;height:4px;background:#e5dbcf}
+.progress{height:100%;width:0;background:var(--coral);transition:width .35s}
+.topbar{position:absolute;z-index:40;left:0;right:0;top:4px;height:58px;padding:12px 18px;display:flex;align-items:center;gap:10px;background:rgba(247,242,232,.96);border-bottom:1px solid rgba(222,211,197,.65)}
+.brand{font-size:14px;font-weight:800;letter-spacing:.02em}.badge{font-size:11px;color:var(--muted);border:1px solid var(--line);background:#fffaf2;border-radius:999px;padding:6px 9px}
+.back{margin-left:auto;color:var(--muted);text-decoration:none;font-size:12px}
 .stage{position:absolute;inset:62px 0 142px}
-.scene{position:absolute;inset:0;padding:22px 28px;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(18px) scale(.985);pointer-events:none;transition:.45s ease;overflow:hidden}
+.scene{position:absolute;inset:0;padding:24px 30px;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:.38s ease;overflow:hidden}
 .scene.active{opacity:1;transform:none;pointer-events:auto}
-.scene::before,.scene::after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}
-.scene::before{width:320px;height:320px;right:-160px;top:-120px;background:rgba(255,178,120,.08)}
-.scene::after{width:260px;height:260px;left:-140px;bottom:-160px;background:rgba(169,210,178,.08)}
-.s0{background:radial-gradient(circle at 80% 20%,rgba(230,127,72,.17),transparent 34%),linear-gradient(145deg,#1b1714,#151413)}
-.s1{background:radial-gradient(circle at 18% 30%,rgba(255,178,120,.12),transparent 32%),linear-gradient(145deg,#181614,#1f1915)}
-.s2{background:radial-gradient(circle at 75% 22%,rgba(169,210,178,.14),transparent 34%),linear-gradient(145deg,#151816,#171513)}
-.s3{background:radial-gradient(circle at 30% 15%,rgba(255,178,120,.16),transparent 36%),linear-gradient(145deg,#191613,#141312)}
-.s4{background:radial-gradient(circle at 85% 24%,rgba(169,210,178,.14),transparent 34%),linear-gradient(145deg,#141716,#171412)}
-.s5{background:radial-gradient(circle at 50% 35%,rgba(230,127,72,.18),transparent 40%),linear-gradient(145deg,#171412,#11100f)}
-.kicker{position:relative;z-index:2;font-size:12px;letter-spacing:.16em;font-weight:950;color:#dcbba0;margin-bottom:12px}
+.kicker{position:relative;z-index:2;display:inline-block;width:max-content;max-width:100%;font-size:12px;font-weight:800;color:var(--coral);background:#fff7f0;border:1px solid #ead5c9;border-radius:999px;padding:6px 10px;margin-bottom:14px}
 h1,h2,p{position:relative;z-index:2;margin:0}
-h1{font-size:clamp(38px,7.5vw,70px);line-height:1.15;letter-spacing:-.05em}
-h2{font-size:clamp(30px,5.4vw,52px);line-height:1.22;letter-spacing:-.04em}
-.sub{font-size:clamp(16px,2.5vw,23px);line-height:1.65;color:#e7ddd5;margin-top:16px}
-.accent{color:var(--orange)}.green{color:var(--green)}
-.clockline{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:26px;position:relative;z-index:2}
-.clockCard{flex:1;max-width:250px;text-align:center;padding:18px 14px;border:1px solid #544b44;border-radius:24px;background:rgba(255,255,255,.035);backdrop-filter:blur(8px)}
-.time{font-size:clamp(42px,9vw,76px);line-height:1;font-weight:950;letter-spacing:-.07em}.time.orange{color:var(--orange)}
-.clockLabel{margin-top:8px;font-size:13px;color:#bfb6ad}.arrow{font-size:28px;color:#8e8379}
-.hourpill{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:9px 14px;border-radius:999px;background:#fff3e6;color:#3e3027;font-weight:900;font-size:14px;position:relative;z-index:2}
+h1{font-size:clamp(36px,7vw,64px);line-height:1.2;letter-spacing:-.045em}
+h2{font-size:clamp(28px,5vw,46px);line-height:1.32;letter-spacing:-.035em}
+.sub{font-size:clamp(16px,2.4vw,21px);line-height:1.75;color:#554f49;margin-top:16px}
+.accent{color:var(--coral)}.green{color:var(--green)}
+.illobox{position:relative;z-index:2;margin-top:22px;background:rgba(255,253,248,.92);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 10px 28px rgba(69,57,45,.07)}
+.timeflow{display:grid;grid-template-columns:1fr 52px 1fr;align-items:center;gap:8px}
+.timecard{text-align:center;padding:18px 10px;border-radius:18px;background:#fbf7f0;border:1px solid #e8ddd0}
+.timecard.sleep{background:var(--green-soft);border-color:#cfded2}
+.time{font-size:clamp(42px,8.5vw,70px);line-height:1;font-weight:850;letter-spacing:-.06em}
+.timelabel{margin-top:8px;font-size:13px;color:var(--muted)}
+.arrow{position:relative;height:2px;background:#b6a99b}
+.arrow:after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #b6a99b;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.hournote{text-align:center;margin-top:14px;font-size:14px;font-weight:800;color:#6d5142}
 .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;position:relative;z-index:2}
-.choice{border:2px solid #514740;background:rgba(255,255,255,.04);color:#fff;border-radius:22px;padding:20px 18px;text-align:left;font:inherit;cursor:pointer;transition:.18s}
-.choice:hover,.choice:focus{transform:translateY(-3px);border-color:#b87f5d;outline:none}.choice.selected{border-color:var(--orange);background:rgba(255,178,120,.11);box-shadow:0 0 0 4px rgba(255,178,120,.08)}
-.choice b{display:block;font-size:clamp(20px,3.6vw,28px);line-height:1.3;margin-bottom:7px}.choice span{font-size:13px;line-height:1.55;color:#cfc5bc}
-.studygrid{display:grid;grid-template-columns:1fr .9fr;gap:22px;align-items:center;margin-top:22px;position:relative;z-index:2}
-.big43{font-size:clamp(78px,16vw,140px);font-weight:950;line-height:.9;letter-spacing:-.08em;color:var(--green)}
-.studyMeta{font-size:15px;line-height:1.8;color:#e7ded6;margin-top:14px}.studyMeta b{color:#fff;font-size:18px}
-.baby-dots{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;padding:16px;border-radius:22px;background:rgba(255,255,255,.035);border:1px solid #4a433d}
-.baby-dots span{aspect-ratio:1;border-radius:50%;background:#8fb59a;animation:pop .45s ease both}.baby-dots span:nth-child(3n){background:#c98a61}.baby-dots span:nth-child(5n){background:#d7c7b8}
-@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.resultCards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;position:relative;z-index:2}
-.result{border-radius:24px;padding:22px;background:#fff7ec;color:#2e2925;box-shadow:0 18px 45px rgba(0,0,0,.2)}
-.result.muted{background:#302b27;color:#fff}
-.result .num{font-size:clamp(54px,10vw,92px);font-weight:950;line-height:.95;letter-spacing:-.08em;color:#6b9875}.result.muted .num{color:#d8cec5}
-.result .rlabel{font-size:15px;font-weight:900;line-height:1.45;margin-top:10px}.result .rsub{font-size:12px;line-height:1.55;margin-top:8px;opacity:.72}
-.resultPunch{position:relative;z-index:2;margin-top:18px;padding:12px 16px;border-left:5px solid var(--orange);background:rgba(255,178,120,.08);border-radius:0 14px 14px 0;font-size:18px;line-height:1.55;font-weight:900}
-.timeline{position:relative;z-index:2;margin-top:26px}
-.timelineRow{display:grid;grid-template-columns:85px 1fr 85px;gap:12px;align-items:center;margin:18px 0}
-.tbox{padding:13px 8px;text-align:center;border-radius:16px;background:#fff6e9;color:#2e2823;font-size:22px;font-weight:950}.tbox.sleep{background:#dfeee2;color:#31563a}
-.line{position:relative;height:12px;border-radius:999px;background:#3b3530;overflow:hidden}.line::before{content:"";position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#d48959,#d48959)}
-.timelineRow.short .line::before{width:26%;background:#9ac0a2}.timelineRow.short .line{background:#2c2926}
-.tnote{grid-column:2/3;text-align:center;margin-top:-8px;font-size:12px;color:#bcb2aa}
-.equal{position:relative;z-index:2;text-align:center;margin:8px 0 0;font-size:clamp(38px,7vw,64px);font-weight:950;letter-spacing:-.06em}
-.takeaway{position:relative;z-index:2;font-size:clamp(34px,6vw,58px);font-weight:950;line-height:1.4;letter-spacing:-.045em}
-.limit{position:relative;z-index:2;margin-top:22px;padding:13px 15px;border-radius:16px;background:#fff0bd;color:#594a35;font-size:13px;line-height:1.6}
-.subtitle-slot{position:absolute;z-index:45;left:12px;right:12px;bottom:76px;height:56px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 12px;border-radius:14px;background:rgba(8,8,8,.72);backdrop-filter:blur(8px);font-size:14px;line-height:1.45;color:#fff;transition:.2s;overflow:hidden}
+.choice{border:2px solid var(--line);background:rgba(255,253,248,.94);color:var(--ink);border-radius:20px;padding:20px 18px;text-align:left;font:inherit;cursor:pointer;transition:.18s;box-shadow:0 8px 20px rgba(69,57,45,.05)}
+.choice:hover,.choice:focus{transform:translateY(-2px);border-color:#cda28f;outline:none}
+.choice.selected{border-color:var(--coral);background:#fff7f2;box-shadow:0 0 0 4px rgba(201,117,88,.08)}
+.choice b{display:block;font-size:clamp(20px,3.4vw,27px);line-height:1.35;margin-bottom:8px}.choice span{font-size:13px;line-height:1.65;color:var(--muted)}
+.studycard{position:relative;z-index:2;margin-top:22px;display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:center;background:rgba(255,253,248,.94);border:1px solid var(--line);border-radius:24px;padding:22px}
+.papericon{width:112px;height:138px;border:2px solid #b9ab9a;border-radius:10px;background:#fffdf8;position:relative;margin:auto;transform:rotate(-2deg)}
+.papericon:before{content:"";position:absolute;left:18px;right:18px;top:30px;height:2px;background:#d8cdc0;box-shadow:0 17px 0 #d8cdc0,0 34px 0 #d8cdc0,0 51px 0 #d8cdc0}
+.papericon:after{content:"43";position:absolute;right:-17px;bottom:-17px;width:58px;height:58px;border-radius:50%;background:var(--green);color:white;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:850;border:4px solid var(--paper2)}
+.studytext .big{font-size:clamp(48px,9vw,78px);font-weight:850;line-height:1;color:var(--green);letter-spacing:-.06em}
+.studytext .meta{margin-top:10px;font-size:15px;line-height:1.8;color:#5b554f}.studytext .meta b{color:var(--ink)}
+.resultpanel{position:relative;z-index:2;margin-top:20px;background:rgba(255,253,248,.95);border:1px solid var(--line);border-radius:24px;padding:22px}
+.resultrow{display:grid;grid-template-columns:130px 1fr 76px;gap:12px;align-items:center;margin:16px 0}
+.rlabel{font-size:14px;font-weight:800;line-height:1.4}.track{height:22px;border-radius:999px;background:#eee6dd;overflow:hidden}.bar{height:100%;border-radius:999px;background:var(--green);transform-origin:left;animation:grow .8s ease both}.bar.neutral{width:18%;background:#b8ada2}.bar.good{width:82%}
+.rvalue{font-size:22px;font-weight:850;text-align:right}.rvalue.good{color:var(--green)}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.resultnote{margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--coral-soft);font-size:16px;line-height:1.6;font-weight:800;color:#714b3b}
+.compare{position:relative;z-index:2;display:grid;gap:14px;margin-top:22px}
+.crow{display:grid;grid-template-columns:74px 1fr 74px;gap:10px;align-items:center}
+.ct{padding:10px 5px;text-align:center;border-radius:14px;background:#fffaf2;border:1px solid var(--line);font-size:20px;font-weight:850}
+.ct.end{background:var(--green-soft);border-color:#cadbcd;color:#395842}
+.cline{height:10px;border-radius:999px;background:#e5d3c8;position:relative}.cline.short{background:linear-gradient(90deg,var(--green) 0 27%,#e9e1d8 27%)}
+.cnote{grid-column:2/3;text-align:center;font-size:12px;color:var(--muted);margin-top:-6px}
+.keyline{position:relative;z-index:2;margin-top:22px;padding:18px 20px;border-left:5px solid var(--green);background:#edf4ee;border-radius:0 18px 18px 0;font-size:clamp(22px,4vw,34px);font-weight:850;line-height:1.5}
+.takeaway{position:relative;z-index:2;font-size:clamp(32px,6vw,54px);font-weight:850;line-height:1.45;letter-spacing:-.04em}
+.takeaway .not{display:inline-block;color:var(--coral);border-bottom:5px solid #e8b39f}
+.limit{position:relative;z-index:2;margin-top:22px;padding:13px 15px;border-radius:16px;background:var(--yellow);color:#584f3e;font-size:13px;line-height:1.65}
+.subtitle-slot{position:absolute;z-index:45;left:14px;right:14px;bottom:76px;min-height:56px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px 14px;border-radius:14px;background:#fffdf8;border:1px solid var(--line);box-shadow:0 6px 18px rgba(69,57,45,.08);font-size:14px;line-height:1.45;color:#433e39;transition:.2s;overflow:hidden}
 .subtitle-slot.off{opacity:0}
-.controls{position:absolute;z-index:46;left:0;right:0;bottom:0;height:70px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;background:#11100f;border-top:1px solid #2d2926}
-.ctrl{height:44px;border:1px solid #4a433d;background:#25211e;color:#fff;border-radius:13px;padding:0 13px;font:inherit;font-size:13px;font-weight:900;cursor:pointer}
-.ctrl.primary{background:var(--orange);color:#261e19;border-color:var(--orange)}.ctrl:disabled{opacity:.35}.spacer{flex:1}.count{font-size:12px;color:#afa69e;padding:0 4px}
-.start{position:absolute;z-index:80;inset:0;background:radial-gradient(circle at 70% 20%,rgba(230,127,72,.20),transparent 35%),#12100f;display:flex;align-items:center;justify-content:center;padding:28px}
-.start.hidden{display:none}.startInner{width:min(650px,100%);text-align:center}.startTitle{font-size:clamp(38px,8vw,70px);font-weight:950;line-height:1.18;letter-spacing:-.055em}.startText{margin-top:18px;font-size:15px;line-height:1.7;color:#d2c8c0}.startBtn{margin-top:22px;border:0;border-radius:16px;background:var(--orange);color:#271f1a;font-size:17px;font-weight:950;padding:14px 22px;cursor:pointer}.audioStatus{margin-top:14px;font-size:12px;color:#a99f97}
+.controls{position:absolute;z-index:46;left:0;right:0;bottom:0;height:70px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;background:#f0e9df;border-top:1px solid var(--line)}
+.ctrl{height:44px;border:1px solid #d2c5b7;background:#fffaf3;color:#403a35;border-radius:13px;padding:0 13px;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
+.ctrl.primary{background:#5d554e;color:white;border-color:#5d554e}.ctrl:disabled{opacity:.35}.spacer{flex:1}.count{font-size:12px;color:#776f67;padding:0 4px}
+.start{position:absolute;z-index:80;inset:0;background:var(--paper);display:flex;align-items:center;justify-content:center;padding:28px}
+.start:before{content:"";position:absolute;inset:0;opacity:.28;background-image:radial-gradient(#b9aa98 .55px,transparent .55px);background-size:7px 7px}
+.start.hidden{display:none}.startInner{position:relative;z-index:2;width:min(610px,100%);text-align:center}
+.startMark{width:74px;height:74px;margin:0 auto 18px;border-radius:50%;background:#fffaf1;border:2px solid #d6c7b8;position:relative}
+.startMark:before{content:"";position:absolute;left:17px;right:17px;bottom:20px;height:19px;border:3px solid var(--green);border-top:0;border-radius:0 0 18px 18px}
+.startMark:after{content:"";position:absolute;width:16px;height:16px;border:3px solid var(--coral);border-radius:50%;top:13px;left:26px}
+.startTitle{font-size:clamp(36px,7vw,62px);font-weight:850;line-height:1.25;letter-spacing:-.045em}
+.startText{margin-top:18px;font-size:15px;line-height:1.8;color:#655e57}
+.startBtn{margin-top:22px;border:0;border-radius:15px;background:#5d554e;color:white;font-size:17px;font-weight:850;padding:14px 24px;cursor:pointer}
+.audioStatus{margin-top:13px;font-size:12px;color:#857c74}
 @media(max-width:620px){
- .stage{inset:62px 0 144px}.scene{padding:18px 20px}.choice-grid,.resultCards,.studygrid{grid-template-columns:1fr}.studygrid{gap:12px}.baby-dots{grid-template-columns:repeat(11,1fr);gap:5px}.baby-dots span{min-width:0}.big43{font-size:86px}.clockline{gap:9px}.clockCard{padding:14px 8px}.arrow{font-size:20px}.time{font-size:48px}.timelineRow{grid-template-columns:70px 1fr 70px;gap:8px}.tbox{font-size:18px}.ctrl{padding:0 11px}.ctrl .txt{display:none}.subtitle-slot{bottom:76px;height:58px;font-size:13px}
+ .stage{inset:62px 0 144px}.scene{padding:20px 19px}.choice-grid,.studycard{grid-template-columns:1fr}.studycard{gap:12px}.papericon{width:86px;height:104px}.studytext{text-align:center}.resultrow{grid-template-columns:102px 1fr 68px;gap:8px}.rlabel{font-size:12px}.rvalue{font-size:19px}.crow{grid-template-columns:64px 1fr 64px}.ct{font-size:17px}.ctrl{padding:0 11px}.ctrl .txt{display:none}.subtitle-slot{bottom:76px;min-height:58px;font-size:13px}
 }
 </style>
 </head>
 <body>
 <div class="player">
   <div class="progress-wrap"><div class="progress" id="progress"></div></div>
-  <div class="topbar"><div class="brand">Baby Care Tips Up</div><div class="badge">第1回・60秒版</div><a class="back" href="episode01.html">文章版</a></div>
+  <div class="topbar">
+    <div class="brand">育児エビデンス・ストーリー</div>
+    <div class="badge">第1回・寝つき</div>
+    <a class="back" href="episode01.html">文章版</a>
+  </div>
 
   <main class="stage">
-    <section class="scene s0 active" data-duration="6500" data-audio="audio/ep01-01.mp3" data-caption="8時に寝床へ。でも眠るのは9時。明日はどうする？">
-      <div class="kicker">1 HOUR TO FALL ASLEEP</div>
+    <section class="scene active" data-duration="6500" data-caption="毎晩8時に寝床へ。でも、眠るのは9時。こんな時、明日はどうしますか？">
+      <div class="kicker">まず、こんな場面を想像してください</div>
       <h1>寝かしつけに<br><span class="accent">1時間。</span></h1>
-      <div class="clockline">
-        <div class="clockCard"><div class="time">8:00</div><div class="clockLabel">寝床へ</div></div>
-        <div class="arrow">→</div>
-        <div class="clockCard"><div class="time orange">9:00</div><div class="clockLabel">やっと眠る</div></div>
+      <div class="illobox">
+        <div class="timeflow">
+          <div class="timecard"><div class="time">8:00</div><div class="timelabel">寝床へ</div></div>
+          <div class="arrow"></div>
+          <div class="timecard sleep"><div class="time">9:00</div><div class="timelabel">やっと眠る</div></div>
+        </div>
+        <div class="hournote">寝床で起きている時間は60分</div>
       </div>
-      <div class="hourpill">⏱ 寝床で起きている時間：60分</div>
     </section>
 
-    <section class="scene s1" data-interactive="true" data-audio="audio/ep01-02.mp3" data-caption="明日は、もっと早く寝かせる？ それとも少し遅くする？">
-      <div class="kicker">YOUR CHOICE</div>
-      <h2>明日は、どうする？</h2>
+    <section class="scene" data-interactive="true" data-caption="明日は、もっと早く寝かせる？ それとも、少し遅くする？">
+      <div class="kicker">あなたなら、どうしますか？</div>
+      <h2>明日の寝かしつけ、どうする？</h2>
       <div class="choice-grid">
-        <button class="choice"><b>A　もっと早く</b><span>睡眠時間を確保するため、寝かしつけ開始を前倒し。</span></button>
-        <button class="choice"><b>B　少し遅く</b><span>実際に眠くなる時刻へ、寝床に入る時刻を近づける。</span></button>
+        <button class="choice"><b>A　もっと早く</b><span>少しでも長く眠れるように、寝床へ行く時刻を前へ。</span></button>
+        <button class="choice"><b>B　少し遅く</b><span>実際に眠くなる時刻へ、寝床へ行く時刻を近づける。</span></button>
       </div>
     </section>
 
-    <section class="scene s2" data-duration="7500" data-audio="audio/ep01-03.mp3" data-caption="研究は、生後6〜16か月の43人で行われました。">
-      <div class="kicker">THE STUDY</div>
-      <h2>研究したのは<br><span class="green">43人</span>の赤ちゃん</h2>
-      <div class="studygrid">
-        <div>
-          <div class="big43">43</div>
-          <div class="studyMeta"><b>生後6〜16か月</b><br>寝つき・夜間覚醒に悩む家庭<br>2016年の比較試験</div>
+    <section class="scene" data-duration="7200" data-caption="この方法は、生後6か月から16か月の赤ちゃん43人を対象に研究されました。">
+      <div class="kicker">研究を見てみます</div>
+      <h2>対象は、生後6〜16か月の<br><span class="green">43人</span>の赤ちゃん</h2>
+      <div class="studycard">
+        <div class="papericon" aria-hidden="true"></div>
+        <div class="studytext">
+          <div class="big">43人</div>
+          <div class="meta"><b>寝つきや夜中の目覚めに悩む家庭</b><br>2016年に行われた比較試験です。</div>
         </div>
-        <div class="baby-dots" id="babyDots"></div>
       </div>
     </section>
 
-    <section class="scene s3" data-duration="9000" data-audio="audio/ep01-04.mp3" data-caption="3か月後、寝る時刻を遅らせた群は、寝つきが平均10分短縮。">
-      <div class="kicker">RESULT</div>
-      <h2>3か月後</h2>
-      <div class="resultCards">
-        <div class="result">
-          <div class="num">−10分</div>
-          <div class="rlabel">寝る時刻を遅らせた群</div>
-          <div class="rsub">寝つくまでの時間が短縮</div>
+    <section class="scene" data-duration="8500" data-caption="3か月後、寝る時刻を少し遅らせたグループでは、寝つくまでの時間が平均10分短くなりました。">
+      <div class="kicker">3か月後の結果</div>
+      <h2>寝つくまでの時間は、どう変わった？</h2>
+      <div class="resultpanel">
+        <div class="resultrow">
+          <div class="rlabel">少し遅くした群</div>
+          <div class="track"><div class="bar good"></div></div>
+          <div class="rvalue good">−10分</div>
         </div>
-        <div class="result muted">
-          <div class="num">＋2分</div>
+        <div class="resultrow">
           <div class="rlabel">睡眠の説明だけ</div>
-          <div class="rsub">ほぼ変化なし</div>
+          <div class="track"><div class="bar neutral"></div></div>
+          <div class="rvalue">＋2分</div>
         </div>
+        <div class="resultnote">「少し遅くする」方法で、寝つきが改善しました。</div>
       </div>
-      <div class="resultPunch">「もっと早く」ではなく、<span class="accent">少し遅くする方法</span>で改善した。</div>
     </section>
 
-    <section class="scene s4" data-duration="10000" data-audio="audio/ep01-05.mp3" data-caption="狙いは夜更かしではなく、寝床で長く起きている時間を減らすこと。">
-      <div class="kicker">WHY IT CAN WORK</div>
-      <h2>狙いは「遅寝」ではない</h2>
-      <div class="timeline">
-        <div class="timelineRow">
-          <div class="tbox">8:00</div><div class="line"></div><div class="tbox sleep">9:00</div>
-          <div></div><div class="tnote">寝床で1時間 起きたまま</div><div></div>
+    <section class="scene" data-duration="9000" data-caption="大切なのは夜更かしではありません。まだ眠くない時間を、寝床で長く過ごさないことです。">
+      <div class="kicker">ポイントはここです</div>
+      <h2>「遅く寝かせる」が目的ではありません</h2>
+      <div class="compare">
+        <div class="crow">
+          <div class="ct">8:00</div><div class="cline"></div><div class="ct end">9:00</div>
+          <div></div><div class="cnote">寝床で1時間 起きたまま</div><div></div>
         </div>
-        <div class="timelineRow short">
-          <div class="tbox">8:45</div><div class="line"></div><div class="tbox sleep">9:00</div>
-          <div></div><div class="tnote">まず「眠れる時刻」へ近づける</div><div></div>
+        <div class="crow">
+          <div class="ct">8:45</div><div class="cline short"></div><div class="ct end">9:00</div>
+          <div></div><div class="cnote">まず「眠れる時刻」へ近づける</div><div></div>
         </div>
       </div>
-      <div class="equal"><span class="green">眠気</span> と <span class="accent">寝床</span> を近づける</div>
+      <div class="keyline">まだ眠くない時間を、寝床で長く過ごさない。</div>
     </section>
 
-    <section class="scene s5" data-duration="10500" data-audio="audio/ep01-06.mp3" data-caption="「もっと早く」の前に、この子は今、本当に眠いのかを考える。">
-      <div class="kicker">TAKEAWAY</div>
-      <div class="takeaway">早く寝床へ入る<br><span class="accent">＝</span> 早く眠る<br><span class="accent">ではない。</span></div>
-      <p class="sub">長い寝かしつけが続くなら、<br><span class="green">「この子は今、本当に眠い？」</span>を一度考える。</p>
-      <div class="limit"><b>研究の限界：</b>「早く寝かせる群」と「遅く寝かせる群」の直接対決ではありません。対象は生後6〜16か月の43人です。</div>
+    <section class="scene" data-duration="10000" data-caption="早く寝床へ入れば、早く眠るとは限りません。長い寝かしつけが続くなら、この子は今、本当に眠いのかな、と考えてみる価値があります。">
+      <div class="kicker">今日のひとこと</div>
+      <div class="takeaway">早く寝床へ入る<br>＝ 早く眠る、<br><span class="not">とは限らない。</span></div>
+      <p class="sub">長い寝かしつけが続くなら、<br><span class="green">「この子は今、本当に眠い？」</span>と考えてみる。</p>
+      <div class="limit"><b>研究の限界：</b>「早く寝かせる群」と「遅く寝かせる群」の直接比較ではありません。対象は生後6〜16か月の43人です。</div>
     </section>
   </main>
 
@@ -166,17 +186,17 @@ h2{font-size:clamp(30px,5.4vw,52px);line-height:1.22;letter-spacing:-.04em}
     <button class="ctrl" id="prevBtn">←</button>
     <button class="ctrl" id="nextBtn">→</button>
     <button class="ctrl" id="soundBtn">🔊 <span class="txt">音声</span></button>
-    <button class="ctrl" id="captionBtn">CC <span class="txt">字幕</span></button>
+    <button class="ctrl" id="captionBtn">字幕</button>
     <div class="spacer"></div><div class="count" id="count">1 / 6</div>
   </div>
 
   <div class="start" id="start">
     <div class="startInner">
-      <div class="kicker">60 SECOND INTERACTIVE STORY</div>
-      <div class="startTitle">寝ないなら、<br>もっと早く？<br><span class="accent">それとも遅く？</span></div>
-      <div class="startText">結論と研究結果だけを、約60秒で。<br>途中で二択に参加できます。</div>
-      <button class="startBtn" id="startBtn">▶ 始める</button>
-      <div class="audioStatus" id="audioStatus">端末の日本語TTSを使用します</div>
+      <div class="startMark" aria-hidden="true"></div>
+      <div class="startTitle">寝ないなら、<br>もっと早く？<br><span class="accent">それとも少し遅く？</span></div>
+      <div class="startText">研究結果を、短く・わかりやすく。<br>途中で二択に答えながら進みます。</div>
+      <button class="startBtn" id="startBtn">▶ 見てみる</button>
+      <div class="audioStatus">音声つき</div>
     </div>
   </div>
 </div>
@@ -193,9 +213,6 @@ const captionBtn=document.getElementById('captionBtn');
 const count=document.getElementById('count');
 const start=document.getElementById('start');
 const startBtn=document.getElementById('startBtn');
-const babyDots=document.getElementById('babyDots');
-
-for(let i=0;i<43;i++){const s=document.createElement('span');s.style.animationDelay=(i*18)+'ms';babyDots.appendChild(s)}
 
 let index=0,playing=false,soundOn=true,captionsOn=true,awaitingChoice=false,timer=null,started=false,voice=null;
 
@@ -208,7 +225,7 @@ function pickJapaneseVoice(){
   }
   const voices=speechSynthesis.getVoices();
   voice=
-    voices.find(v=>v.lang==="ja-JP" && /Google 日本語|Microsoft.*(Nanami|Haruka|Ayumi)|Kyoko|O-ren|Japanese/i.test(v.name)) ||
+    voices.find(v=>v.lang==="ja-JP" && /Kyoko|O-ren|Nanami|Haruka|Ayumi|Google 日本語/i.test(v.name)) ||
     voices.find(v=>v.lang==="ja-JP") ||
     voices.find(v=>v.lang && v.lang.startsWith("ja")) ||
     null;
@@ -223,9 +240,8 @@ if("speechSynthesis" in window){
 }
 
 function clearTimer(){if(timer){clearTimeout(timer);timer=null}}
-function stopSpeech(){
-  if("speechSynthesis" in window) speechSynthesis.cancel();
-}
+function stopSpeech(){if("speechSynthesis" in window)speechSynthesis.cancel()}
+
 function render(){
   scenes.forEach((s,i)=>s.classList.toggle('active',i===index));
   progress.style.width=((index+1)/scenes.length*100)+'%';
@@ -243,36 +259,36 @@ function scheduleFallback(){
   timer=setTimeout(()=>next(true),ms);
 }
 function playScene(){
-  clearTimer();
-  stopSpeech();
+  clearTimer();stopSpeech();
   if(!playing)return;
-
-  const text=scenes[index].dataset.caption || "";
-  if(soundOn && "speechSynthesis" in window && text){
-    const utterance=new SpeechSynthesisUtterance(text);
-    utterance.lang="ja-JP";
-    utterance.rate=1.06;
-    utterance.pitch=1.02;
-    if(voice) utterance.voice=voice;
-    utterance.onend=()=>{ if(playing && !awaitingChoice) next(true); };
-    utterance.onerror=()=>scheduleFallback();
-    speechSynthesis.speak(utterance);
-  }else{
-    scheduleFallback();
-  }
+  const text=scenes[index].dataset.caption||"";
+  if(soundOn&&"speechSynthesis" in window&&text){
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang="ja-JP";
+    u.rate=.96;
+    u.pitch=.98;
+    if(voice)u.voice=voice;
+    u.onend=()=>{if(playing&&!awaitingChoice)next(true)};
+    u.onerror=()=>scheduleFallback();
+    speechSynthesis.speak(u);
+  }else scheduleFallback();
 }
 function show(i,auto=true){
-  clearTimer();
-  stopSpeech();
-  index=Math.max(0,Math.min(scenes.length-1,i));render();
+  clearTimer();stopSpeech();
+  index=Math.max(0,Math.min(scenes.length-1,i));
+  render();
   if(auto&&started)playScene();
 }
 function next(auto=false){
   if(awaitingChoice)return;
-  if(index<scenes.length-1){show(index+1,playing||auto)}
+  if(index<scenes.length-1)show(index+1,playing||auto);
   else{playing=false;playBtn.innerHTML='▶ <span class="txt">もう一度</span>'}
 }
-function prev(){playing=false;playBtn.innerHTML='▶ <span class="txt">再生</span>';show(index-1,false)}
+function prev(){
+  playing=false;
+  playBtn.innerHTML='▶ <span class="txt">再生</span>';
+  show(index-1,false);
+}
 function togglePlay(){
   if(index===scenes.length-1&&!playing){scenes.forEach(s=>delete s.dataset.answered);index=0;render()}
   playing=!playing;
@@ -282,8 +298,10 @@ function togglePlay(){
 document.querySelectorAll('.choice').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
-  scenes[index].dataset.answered='true';awaitingChoice=false;
-  playing=true;playBtn.innerHTML='⏸ <span class="txt">一時停止</span>';
+  scenes[index].dataset.answered='true';
+  awaitingChoice=false;
+  playing=true;
+  playBtn.innerHTML='⏸ <span class="txt">一時停止</span>';
   setTimeout(()=>next(true),450);
 }));
 playBtn.addEventListener('click',togglePlay);
@@ -293,9 +311,9 @@ soundBtn.addEventListener('click',()=>{
   soundOn=!soundOn;
   soundBtn.innerHTML=soundOn?'🔊 <span class="txt">音声</span>':'🔇 <span class="txt">音声</span>';
   stopSpeech();
-  if(soundOn && playing) playScene();
+  if(soundOn&&playing)playScene();
 });
-captionBtn.addEventListener('click',()=>{captionsOn=!captionsOn;captionBtn.innerHTML=captionsOn?'CC <span class="txt">字幕</span>':'CC̸ <span class="txt">字幕</span>';render()});
+captionBtn.addEventListener('click',()=>{captionsOn=!captionsOn;captionBtn.textContent=captionsOn?'字幕':'字幕OFF';render()});
 startBtn.addEventListener('click',()=>{started=true;start.classList.add('hidden');playing=true;render();playScene()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){clearTimer();stopSpeech()}});
 render();
